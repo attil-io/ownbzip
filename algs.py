@@ -10,12 +10,19 @@ def rotate(instr, steps=0):
     ret += instr[:len(instr) - steps];
     return ret;
 
+
+def safeIndex(somelist, needle):
+    if needle in somelist:
+       return somelist.index(needle)
+    else:
+       return None
+
 def compressPrepare(instr):
     M=[];
     for i in range(len(instr)):
         M.append(rotate(instr, i));
     M.sort();
-    return M,M.index(instr);
+    return M,safeIndex(M,instr);
 
 
 def getL(M):
