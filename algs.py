@@ -72,8 +72,7 @@ def getS(L, T, I):
   S.reverse()
   return S;
 
-
-def testComp(instr):
+def XXXtestComp(instr):
     M,I = compressPrepare(instr);
     # print M, I
     L = getL(M);
@@ -144,4 +143,38 @@ def getLfromR(R,Y):
 #decoded=testDecomp(L, I)
 #print 'decoded:', ''.join(decoded), len(decoded), 'bytes'
 
+
+#--------------------------------------------------
+EOF=chr(4)
+
+def extendString(instr):
+    return instr + EOF
+
+def formArrayOfWords(Sap):
+    return [Sap[ind:ind+1] for ind in range(len(Sap)) ] 
+
+def formArrayOfSuffixes(Sap):
+    return [ind for ind in range(len(Sap)) ] 
+
+def sortArrayOfSuffixes(Sap, V):
+    def compare(idx1, idx2):
+        s1 = Sap[idx1:] + Sap[:idx1]
+        s2 = Sap[idx2:] + Sap[:idx2]
+        if (s1==s2):
+           return 0
+        elif s1 < s2:
+           return -1
+        else:
+           return 1 
+    return sorted(V, compare)
+
+def getIandL(Sap, Vsorted):
+    return safeIndex(Vsorted,0),[Sap[(len(Sap) + v-1) % len(Sap)] for v in Vsorted]
+
+def testComp(S): 
+    Sap = extendString(S)
+    V = formArrayOfSuffixes(S)
+    Vsorted =  sortArrayOfSuffixes(S, V)
+    I,L = getIandL(S, Vsorted)
+    return L,I
 

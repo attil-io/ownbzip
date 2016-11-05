@@ -41,16 +41,14 @@ class AlgsTest(unittest.TestCase):
         text=''.join(testDecomp(L, I))
         self.assertEqual('abraca', text)
 
-    def testDecompressNormal(self):
-        L=['c', 'a', 'r', 'a', 'a', 'b']
-        I=1
-        text=''.join(testDecomp(L, I))
-        self.assertEqual('abraca', text)
+    def testCompressWithDot(self):
+        L,I = testComp('Hello. World.')
+        self.assertEqual(3, I)
+        self.assertEqual(['.', 'o', 'd', '.', ' ', 'l', 'H', 'r', 'e', 'l', 'l', 'W', 'o'], L)
+
 
     def testCompressLong(self):
         L,I = testComp(longText)
-        print I
-        print L
         self.assertEqual(78, I)
         self.assertEqual(longTransformed, L)
 
@@ -61,7 +59,6 @@ class AlgsTest(unittest.TestCase):
         self.assertEqual(longText, text)
 
 
-
-
 if __name__ == '__main__':
     unittest.main()
+
