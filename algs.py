@@ -122,19 +122,19 @@ def getLfromR(R,Y):
         
 #-----------------------------------
 
-L,I = testComp(test)
-R1,Y=getR(L)
-R=(map(chr, R1))
+#L,I = testComp(test)
+#R1,Y=getR(L)
+#R=(map(chr, R1))
 #print 'R=',R
-huffmanMap, huffmanGraph = generateHuffmanMap(R)
-encoded = huffmanEncode(R, huffmanMap)
-print 'encoded:', encoded, len(encoded)/8, 'bytes'
+#huffmanMap, huffmanGraph = generateHuffmanMap(R)
+#encoded = huffmanEncode(R, huffmanMap)
+#print 'encoded:', encoded, len(encoded)/8, 'bytes'
 #-----------------------------------
 
-decoded = huffmanDecode(encoded, huffmanMap, huffmanGraph)
+#decoded = huffmanDecode(encoded, huffmanMap, huffmanGraph)
 #print 'xxx R`=', decoded
-L=getLfromR(R, sorted(Y))
-decoded=testDecomp(L, I)
-print 'decoded:', ''.join(decoded), len(decoded), 'bytes'
+#L=getLfromR(R, sorted(Y))
+#decoded=testDecomp(L, I)
+#print 'decoded:', ''.join(decoded), len(decoded), 'bytes'
 
 
