@@ -1,7 +1,9 @@
 #!/usr/bin/python
 
 from algs import *
+from radix import *
 import unittest
+
 
 longText="""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."""
 
@@ -59,6 +61,28 @@ class AlgsTest(unittest.TestCase):
         self.assertEqual(longText, text)
 
 
+class RadixTest(unittest.TestCase):
+    def testSortEmpty(self):
+        sortedArr=radixSort([],10,1)
+        self.assertEqual([],sortedArr)
+
+    def testSortOne(self):
+        sortedArr=radixSort([42],10,1)
+        self.assertEqual([42],sortedArr)
+
+    def testSortMany(self):
+        sortedArr=radixSort([42, 11, 33, 100],10,3)
+        self.assertEqual([11, 33, 42, 100],sortedArr)
+
+    def testSortFun(self):
+        def inverter(num):
+            return 1000-num
+        sortedArr=radixSort([42, 11, 33, 100],10,3,inverter)
+        self.assertEqual([100, 42, 33, 11],sortedArr)
+
+
 if __name__ == '__main__':
-    unittest.main()
+    suite = unittest.TestLoader().loadTestsFromTestCase(RadixTest)
+    unittest.TextTestRunner().run(suite)
+    #unittest.main()
 
