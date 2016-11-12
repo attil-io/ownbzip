@@ -1,7 +1,5 @@
 #!/usr/bin/python
 
-import math
-
 def manberMyers(word):
 	def safeGetIdx(arr, idx):
 	    if idx < len(arr):
@@ -19,7 +17,9 @@ def manberMyers(word):
 	P.append(P0)
 
 	cnt = 1
-	for k in range(1, int(math.ceil(math.log(n, 2))) + 1):
+        lengths = [2**x for x in range(n) if 2**(x-1) < n]
+	for ind,cnt in enumerate(lengths):
+            k=ind + 1
 	    L=[]
 	    for i in range(n):
 		L.append((P[k-1][i], safeGetIdx(P[k-1], i + cnt), i))
@@ -31,7 +31,6 @@ def manberMyers(word):
 		else:
 		   Pk[sortedL[i][2]] = i
 	    P.append(Pk)
-	    cnt = cnt * 2
 	return P[-1]
 
 
